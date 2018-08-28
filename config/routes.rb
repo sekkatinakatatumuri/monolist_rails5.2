@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   # URL の見栄えを考慮して、newだけ個別にルーティングを設定
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :new, :create]
+  
+  resources :items, only: [:new]
 end
