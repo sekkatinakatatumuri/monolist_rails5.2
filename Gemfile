@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Ruby Client for Rakuten Web Service
 gem 'rakuten_web_service' , '1.5.0'
+
+# Autoload dotenv in Rails.
+gem 'dotenv-rails'
