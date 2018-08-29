@@ -9,4 +9,7 @@ class Item < ApplicationRecord
   # throughオプションによりownerships経由でitemsにアクセスできる
   # item.users で item を want/have している users を取得可能
   has_many :users, through: :ownerships
+  
+  has_many :wants
+  has_many :want_users, through: :wants, class_name: 'User', source: :user
 end
