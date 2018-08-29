@@ -7,4 +7,10 @@ class User < ApplicationRecord
   
   # Gemfile で bcrypt がコメントアウト解除必要
   has_secure_password
+  
+  # userモデルから見たとき
+  has_many :ownerships
+  # throughオプションによりownerships経由でitemsにアクセスできる
+  # user.items で user が want/have している items を取得可能
+  has_many :items, through: :ownerships
 end
