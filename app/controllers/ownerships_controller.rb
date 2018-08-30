@@ -10,7 +10,7 @@ class OwnershipsController < ApplicationController
       results = RakutenWebService::Ichiba::Item.search(itemCode: @item.code)
       # 配列の最初を取得(ApplicationControllerのreadメソッドで成型)
       @item = Item.new(read(results.first))
-      # @item が保存されていないと Want できずにスルーされるため保存
+      # want メソッドが @item.id を必要とするため保存
       @item.save
     end
 
@@ -18,6 +18,9 @@ class OwnershipsController < ApplicationController
     if params[:type] == 'Want'
       current_user.want(@item)
       flash[:success] = '商品を Want しました。'
+    elsif params[:type] == 'Have'
+      current_user.have(@item)
+      flash[:success] = '商品を Have しました。'
     end
 
     redirect_back(fallback_location: root_path)
@@ -29,8 +32,11 @@ class OwnershipsController < ApplicationController
     if params[:type] == 'Want'
       current_user.unwant(@item) 
       flash[:success] = '商品の Want を解除しました。'
+    elsif 
+      current_user.unhave(@item) 
+      flash[:success] = '商品の Have を解除しました。'
     end
-
+    
     redirect_back(fallback_location: root_path)
   end
 end
