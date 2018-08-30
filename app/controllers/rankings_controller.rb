@@ -7,4 +7,9 @@ class RankingsController < ApplicationController
     # それらの items を @items = Item.find(@ranking_counts.keys) で items を取得
     @items = Item.find(@ranking_counts.keys)
   end
+  
+  def have
+    @ranking_counts = Have.ranking
+    @items = Item.find(@ranking_counts.keys)
+  end
 end
