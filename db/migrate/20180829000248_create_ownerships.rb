@@ -7,7 +7,7 @@ class CreateOwnerships < ActiveRecord::Migration[5.2]
 
       t.timestamps
       
-      # 同一 User が同一 Item に対して複数回 Want できないように課す制約
+      # 同一 User が同一 Item に対して複数回 Want や Have できないように課す制約
       t.index [:user_id, :item_id , :type], unique: true
     end
   end
